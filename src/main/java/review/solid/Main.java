@@ -54,5 +54,21 @@ public class Main {
         System.out.println("원의 넓이(OCP준수) : " + new_circle_area);
         System.out.println("사각형의 넓이(OCP준수) : " + new_rectangle_area);
 
+        /**
+         * @3.리스코프원칙(LSP)
+         * 리스코프원칙이란  부모 클래스의 인스턴스를 사용하는 위치에 자식 클래스의 인스턴스를 대신 사용하더라도
+         * 코드가 개발자의 본래 의도대로 작동해야한다는 의미이다.
+         *
+         * 위 개방폐쇠의 예제코드에서 보았던것처럼 Shape라는 추상클래스를 선언하여 NewCircle과 NewRectangle 클래스는 각각 이를 상속받아
+         * 각 도형의 넓이를 계산하는 메소드를 필수로 구현하도록 설계하여 본래의 의도대로 동작하도록 한 것이다.
+         */
+
+        // 위 2.1 예제코드를 다시 살펴보면
+        // NewShapeCalculator 클래스의 AreaCalculator 메소드는 Shpae라는 추상클래스를 파라미터로 받고있다.
+        // 이때 NewRectangle 클래스와 NewCircle 클래스는 리스코프원칙을 준수(Shpae)를 상속받아 본래 의도대로 동작하도록
+        // (즉 도형의 넓이를 계산하는 메소드를 필수로 구현하도록)설계 되어있어서 서브타입(자식객체)이 인스턴스로 전달되어도 문제가 없다.
+
+
+
     }
 }
