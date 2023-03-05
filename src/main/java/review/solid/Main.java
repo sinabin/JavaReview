@@ -1,16 +1,19 @@
 package review.solid;
 
+import review.solid.InterfaceSegregationPrinciple.*;
 import review.solid.OpenClosedPrinciple.*;
 import review.solid.SingleResponsibilityPrinciple.Book;
 import review.solid.SingleResponsibilityPrinciple.Customer;
 import review.solid.SingleResponsibilityPrinciple.NewCustomer;
 import review.solid.SingleResponsibilityPrinciple.RentService;
 
+import javax.print.Doc;
+
 public class Main {
     public static void main(String[] args) {
 
         /**
-         * @1.단일책임원칙(SRP)
+         * @1.단일책임원칙(SingleResponsibilityPrinciple)
          * 단일책임원칙이란 하나의 클래스는 하나의 책임만을 가져야 한다는 원칙이다.
          */
         // 1.1 단일 책임원칙(SRP)에 위배되는 Customer Class
@@ -29,7 +32,7 @@ public class Main {
         System.out.println();
 
         /**
-         * @2.개방-폐쇠원칙(OCP)
+         * @2.개방-폐쇠원칙(OpenClosedPrinciple)
          * 개방-폐쇠 원칙이란 객체를 다룸에 있어서 객체의 확장성에 대해서는 개방적이여야하고 수정에 있어서는 폐쇠적이여야 한다는 원칙
          */
 
@@ -53,9 +56,9 @@ public class Main {
         double new_rectangle_area = newShapeCalculator.AreaCalculator(newRectangle);
         System.out.println("원의 넓이(OCP준수) : " + new_circle_area);
         System.out.println("사각형의 넓이(OCP준수) : " + new_rectangle_area);
-
+        System.out.println();
         /**
-         * @3.리스코프원칙(LSP)
+         * @3.리스코프원칙(LoscpovSubstitutionPrinciple)
          * 리스코프원칙이란  부모 클래스의 인스턴스를 사용하는 위치에 자식 클래스의 인스턴스를 대신 사용하더라도
          * 코드가 개발자의 본래 의도대로 작동해야한다는 의미이다.
          *
@@ -68,7 +71,34 @@ public class Main {
         // 이때 NewRectangle 클래스와 NewCircle 클래스는 리스코프원칙을 준수(Shpae)를 상속받아 본래 의도대로 동작하도록
         // (즉 도형의 넓이를 계산하는 메소드를 필수로 구현하도록)설계 되어있어서 서브타입(자식객체)이 인스턴스로 전달되어도 문제가 없다.
 
+        /**
+         * @4.인터페이스분리원칙(InterfaceSegregationPrinciple)
+         * 인터페이스분리원칙이란 자신이 사용하지 않는 메소드에 대해서는 의존성을 갖추어서는 안된다는 원칙이다.
+         *
+         * 즉 인터페이스는 자신이 필요로 하는 메소드만 포함하여 불필요한 의존성을 제거하도록 한다.
+         */
 
+        // 4.1 인터페이스 분리원칙에 위배되는 OldPrinter 인터페이스를 상속받은 Old한 기계들
+        Document document = new Document("0001", "Java-인터페이스분리원칙", "인터페이스 분리원칙이란.......(중략)");
+        OldSimplePrinter oldSimplePrinter = new OldSimplePrinter();
+        OldAdvancedPrinter oldAdvancedPrinter = new OldAdvancedPrinter();
+        oldSimplePrinter.print(document);
+        try {
+            oldSimplePrinter.fax(document);
+        } catch (UnsupportedOperationException e) {
+            System.out.println("OldSimplePrinter에서는 제공하지 않는 기능입니다.");
+        }
+        oldAdvancedPrinter.print(document);
+
+        // 4.2 기존의 OldPrinter 인터페이스를 Printer, Fax, Scanner로 분리
+        System.out.println("######################인터페이스 분리후################################");
+        SimplePrinter simplePrinter = new SimplePrinter();
+        simplePrinter.print(document);
+
+        AdvancedPrinter advancedPrinter = new AdvancedPrinter();
+        advancedPrinter.print(document);
+        advancedPrinter.fax(document);
+        advancedPrinter.scan(document);
 
     }
 }
