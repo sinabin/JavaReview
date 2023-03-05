@@ -1,5 +1,6 @@
 package review.solid;
 
+import review.solid.DependencyInversionPrinciple.OldWeatherTracker;
 import review.solid.InterfaceSegregationPrinciple.*;
 import review.solid.OpenClosedPrinciple.*;
 import review.solid.SingleResponsibilityPrinciple.Book;
@@ -99,6 +100,17 @@ public class Main {
         advancedPrinter.print(document);
         advancedPrinter.fax(document);
         advancedPrinter.scan(document);
+        System.out.println();
+
+        /**
+         * @5.의존역전의원칙(DependencyInversionPrinciple)
+         * 1. 의존역전의 원칙이란 상위 수준의 모듈은 하위 수준의 모듈에 의존해서는 안되며, 상위 모듈이던 하위 모듈이던
+         *    둘다 추상화된 것에 의존해야한다는 것을 의미한다.
+         * 2. 추상화는 세부 사항에 의존해서는 안되며 세부사항(구체적인 구현)은 추상화에 의존해야한다.
+         *
+         *
+         * 즉 한마디로 말하자면, 변화하기 쉬운것에 의존하지말라!
+         */
 
     }
 }
