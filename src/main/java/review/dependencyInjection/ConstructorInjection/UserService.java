@@ -14,8 +14,12 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Autowired // UserService에 UserRepository 추상화된 멤버변수를 주입 -> Solid 원칙중 DIP원칙을 고수.
+    @Autowired // UserService에 UserRepository 추상화된 멤버변수를 주입 -> Solid 원칙중 의존 역전 원칙 따름.
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
+    }
+
+    public void saveUser(){
+        userRepository.saveUser();
     }
 }
