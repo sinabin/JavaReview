@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
 
-    @Autowired // UserService에 UserRepository 추상화된 멤버변수를 주입 -> Solid 원칙중 의존 역전 원칙 따름.
-    public UserService(UserRepository userRepository){
+    // UserService에 UserRepository 추상화된 멤버변수를 주입 -> Solid 원칙중 의존 역전 원칙 따름.
+    public UserService(UserRepository userRepository){ // 생성자로 의존하는 Bean을 주입받으면 @Autowired 어노테이션을 사용하지 않아도 됨.
         this.userRepository = userRepository;
     }
 
